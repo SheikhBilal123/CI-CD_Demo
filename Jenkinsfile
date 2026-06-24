@@ -22,7 +22,7 @@ pipeline {
 
         stage('Notify') {
             steps {
-                echo 'Build complete! Notify team.'
+                echo 'Webhook test successful!'
             }
         }
     }
