@@ -22,7 +22,7 @@ pipeline {
 
         stage('Notify') {
             steps {
-                echo 'Webhook test successful!'
+                echo "Webhook working successfully!"
             }
         }
     }
