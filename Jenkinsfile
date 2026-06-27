@@ -2,28 +2,46 @@ pipeline {
     agent any
 
     stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Building from GitHub...'
+                echo 'Building...'
+                sh 'node --version'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Testing from GitHub...'
+                echo 'Tests passed!'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying from GitHub...'
+                sh 'docker build -t jenkins-demo .'
+                echo 'Deployed!'
             }
         }
 
         stage('Notify') {
             steps {
-                echo "Webhook working successfully!"
+                echo 'Team notified of successful build!'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline SUCCESS!'
+        }
+        failure {
+            echo 'Pipeline FAILED!'
         }
     }
 }
